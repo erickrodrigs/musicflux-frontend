@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="login">
+  <h1 class="login__title" mat-headline-1>Musicflux</h1>
+  <form class="login__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="login__input-margin">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" />
+      <mat-error *ngIf="isUsernameInvalid">Username is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="login__input-margin">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+      <mat-error *ngIf="isPasswordInvalid">Password is required</mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="accent" type="submit" class="login__btn">
+      Sign In
+    </button>
+    <a routerLink="/register" mat-button class="login__link"
+      >Don't you have an account? Create one here.</a
+    >
+    <div class="login__error" *ngIf="hasError">{{ errorMessage }}</div>
+  </form>
+</div>

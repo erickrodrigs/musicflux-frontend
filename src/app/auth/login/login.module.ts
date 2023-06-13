@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './containers/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,8 +18,15 @@ export const ROUTES: Routes = [{ path: '', component: LoginComponent }];
     CommonModule,
     RouterModule.forChild(ROUTES),
     ReactiveFormsModule,
+    MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
+  ],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
+    },
   ],
 })
 export class LoginModule {}
