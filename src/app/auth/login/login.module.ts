@@ -9,7 +9,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './containers/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -26,7 +26,7 @@ export const ROUTES: Routes = [{ path: '', component: LoginComponent }];
     MatIconModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatCardModule,
+    MatSnackBarModule,
   ],
   providers: [
     {

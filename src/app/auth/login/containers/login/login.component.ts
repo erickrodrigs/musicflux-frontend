@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
@@ -8,7 +9,6 @@ import { AuthService } from '../../../../auth/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  errorMessage = '';
   loading = false;
   hidePassword = true;
 
@@ -19,7 +19,8 @@ export class LoginComponent {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly snackBar: MatSnackBar
   ) {}
 
   get passwordInputType() {
@@ -40,16 +41,11 @@ export class LoginComponent {
     return control?.hasError('required') && control.touched;
   }
 
-  get hasError() {
-    return this.errorMessage.length > 0;
-  }
-
   get isNotLoading() {
     return !this.loading;
   }
 
-  onPasswordIconTouch(event: any) {
-    event.preventDefault();
+  onPasswordIconTouch() {
     this.hidePassword = !this.hidePassword;
   }
 
@@ -63,12 +59,18 @@ export class LoginComponent {
       .subscribe((response) => {
         this.loading = false;
         if (response.error) {
-          this.errorMessage = response.error;
+          this.openSnackBar(response.error);
           return;
         }
 
         this.goToHome();
       });
+  }
+
+  private openSnackBar(message: string) {
+    this.snackBar.open(message, 'OK', {
+      duration: 3000,
+    });
   }
 
   private goToHome() {
