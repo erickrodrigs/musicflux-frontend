@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, tap, throwError, of } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 export interface AuthRequestDetails {
   token?: string;
@@ -23,9 +23,9 @@ export class AuthService {
             return of({ error: 'Username or password invalid' });
           }
 
-          return throwError(
-            () => new Error('Something bad happened. Try again later')
-          );
+          return of({
+            error: 'Something unexpected happened. Try again later',
+          });
         })
       );
   }

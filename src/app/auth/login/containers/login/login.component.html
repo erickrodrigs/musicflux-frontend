@@ -1,5 +1,5 @@
 <div class="login">
-  <h1 class="login__title" mat-headline-1>Musicflux</h1>
+  <h1 class="login__title mat-headline-2">Musicflux</h1>
   <form class="login__form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field class="login__input-margin">
       <mat-label>Username</mat-label>
@@ -11,12 +11,19 @@
       <input matInput type="password" formControlName="password" />
       <mat-error *ngIf="isPasswordInvalid">Password is required</mat-error>
     </mat-form-field>
-    <button mat-flat-button color="accent" type="submit" class="login__btn">
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      class="login__btn mat-body-1"
+    >
       Sign In
     </button>
-    <a routerLink="/register" mat-button class="login__link"
+    <a routerLink="/register" mat-button class="login__link mat-body-2"
       >Don't you have an account? Create one here.</a
     >
-    <div class="login__error" *ngIf="hasError">{{ errorMessage }}</div>
+    <mat-card *ngIf="hasError">
+      <mat-card-content mat-body-2>{{ errorMessage }}</mat-card-content>
+    </mat-card>
   </form>
 </div>
