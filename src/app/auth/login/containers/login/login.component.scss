@@ -12,10 +12,10 @@
   &__form {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 80%;
 
-    @media screen and (max-width: 768px) {
-      width: 80%;
+    @media screen and (min-width: 768px) {
+      width: 35%;
     }
   }
 
@@ -30,18 +30,5 @@
 
   &__link {
     margin: 3rem;
-  }
-
-  &__error {
-    color: #212121;
-    border: 1px solid #F44336;
-    border-radius: 2px;
-    padding: 8px;
-    font-size: 14px;
-    font-weight: 400;
-    margin: 10px 0 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }

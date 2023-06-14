@@ -34,7 +34,7 @@ export class LoginComponent {
     return this.errorMessage.length > 0;
   }
 
-  async onSubmit() {
+  onSubmit() {
     if (this.form.invalid) return;
 
     const { username, password } = this.form.value;
