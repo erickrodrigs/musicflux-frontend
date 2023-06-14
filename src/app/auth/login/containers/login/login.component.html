@@ -17,7 +17,10 @@
       type="submit"
       class="login__btn mat-body-1"
     >
-      Sign In
+      <div *ngIf="isNotLoading; else spinner">Sign In</div>
+      <ng-template #spinner>
+        <mat-spinner color="accent" diameter="40"></mat-spinner>
+      </ng-template>
     </button>
     <a routerLink="/register" mat-button class="login__link mat-body-2"
       >Don't you have an account? Create one here.</a

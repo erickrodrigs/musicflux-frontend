@@ -7,6 +7,7 @@ import {
   MatFormFieldModule,
 } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { LoginComponent } from './containers/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,6 +23,7 @@ export const ROUTES: Routes = [{ path: '', component: LoginComponent }];
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     MatCardModule,
   ],
   providers: [
