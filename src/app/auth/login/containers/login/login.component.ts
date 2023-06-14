@@ -10,6 +10,7 @@ import { AuthService } from '../../../../auth/services/auth.service';
 export class LoginComponent {
   errorMessage = '';
   loading = false;
+  hidePassword = true;
 
   form = this.formBuilder.group({
     username: ['', Validators.required],
@@ -20,6 +21,14 @@ export class LoginComponent {
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder
   ) {}
+
+  get passwordInputType() {
+    return this.hidePassword ? 'password' : 'text';
+  }
+
+  get passwordIconName() {
+    return this.hidePassword ? 'visibility_off' : 'visibility';
+  }
 
   get isUsernameInvalid() {
     const control = this.form.get('username');
@@ -37,6 +46,11 @@ export class LoginComponent {
 
   get isNotLoading() {
     return !this.loading;
+  }
+
+  onPasswordIconTouch(event: any) {
+    event.preventDefault();
+    this.hidePassword = !this.hidePassword;
   }
 
   onSubmit() {
