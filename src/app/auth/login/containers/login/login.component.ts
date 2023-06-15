@@ -41,6 +41,14 @@ export class LoginComponent {
     return control?.hasError('required') && control.touched;
   }
 
+  get usernameError() {
+    return 'Username is required';
+  }
+
+  get passwordError() {
+    return 'Password is required';
+  }
+
   get isNotLoading() {
     return !this.loading;
   }
@@ -67,13 +75,13 @@ export class LoginComponent {
       });
   }
 
-  private openSnackBar(message: string) {
+  openSnackBar(message: string) {
     this.snackBar.open(message, 'OK', {
       duration: 3000,
     });
   }
 
-  private goToHome() {
+  goToHome() {
     console.log('going to home...');
   }
 }

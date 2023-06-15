@@ -3,12 +3,17 @@
   <form class="login__form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field class="login__input-margin">
       <mat-label>Username</mat-label>
-      <input matInput formControlName="username" />
-      <mat-error *ngIf="isUsernameInvalid">Username is required</mat-error>
+      <input name="username" matInput formControlName="username" />
+      <mat-error *ngIf="isUsernameInvalid">{{ usernameError }}</mat-error>
     </mat-form-field>
     <mat-form-field class="login__input-margin">
       <mat-label>Password</mat-label>
-      <input matInput [type]="passwordInputType" formControlName="password" />
+      <input
+        matInput
+        name="password"
+        [type]="passwordInputType"
+        formControlName="password"
+      />
       <button
         mat-icon-button
         matSuffix
@@ -16,7 +21,7 @@
       >
         <mat-icon>{{ passwordIconName }}</mat-icon>
       </button>
-      <mat-error *ngIf="isPasswordInvalid">Password is required</mat-error>
+      <mat-error *ngIf="isPasswordInvalid">{{ passwordError }}</mat-error>
     </mat-form-field>
     <button
       mat-flat-button
