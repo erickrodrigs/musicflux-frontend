@@ -29,4 +29,25 @@ export class AuthService {
         })
       );
   }
+
+  register(name: string, username: string, email: string, password: string) {
+    return this.httpClient
+      .post<AuthRequestDetails>('http://localhost:3333/api/v1/auth/register', {
+        name,
+        username,
+        email,
+        password,
+      })
+      .pipe(
+        catchError(({ status, error }) => {
+          if (status >= 400 && status < 500) {
+            return of({ error: error.message });
+          }
+
+          return of({
+            error: 'Something unexpected happened. Try again later',
+          });
+        })
+      );
+  }
 }
