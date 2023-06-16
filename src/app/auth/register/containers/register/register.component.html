@@ -1,1 +1,70 @@
-<p>register works!</p>
+<section class="register">
+  <h1 class="register__title mat-headline-2">Musicflux</h1>
+  <form class="register__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="register__input-margin">
+      <mat-label>Name</mat-label>
+      <input name="name" matInput formControlName="name" />
+      <mat-error *ngIf="isNameInvalid">{{ nameError }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="register__input-margin">
+      <mat-label>Username</mat-label>
+      <input name="username" matInput formControlName="username" />
+      <mat-error *ngIf="isUsernameInvalid">{{ usernameError }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="register__input-margin">
+      <mat-label>Email</mat-label>
+      <input name="email" type="email" matInput formControlName="email" />
+      <mat-error *ngIf="isEmailInvalid">{{ emailError }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="register__input-margin">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        name="password"
+        [type]="passwordInputType"
+        formControlName="password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="$event.preventDefault(); onPasswordIconTouch()"
+      >
+        <mat-icon>{{ passwordIconName }}</mat-icon>
+      </button>
+      <mat-error *ngIf="isPasswordInvalid">{{ passwordError }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="register__input-margin">
+      <mat-label>Confirm password</mat-label>
+      <input
+        matInput
+        name="passwordConfirmation"
+        [type]="passwordInputType"
+        formControlName="passwordConfirmation"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="$event.preventDefault(); onPasswordIconTouch()"
+      >
+        <mat-icon>{{ passwordIconName }}</mat-icon>
+      </button>
+      <mat-error *ngIf="isPasswordConfirmationInvalid">{{
+        passwordConfirmationError
+      }}</mat-error>
+    </mat-form-field>
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      class="register__btn mat-body-1"
+    >
+      <ng-container *ngIf="isNotLoading; else spinner">Register</ng-container>
+      <ng-template #spinner>
+        <mat-spinner color="accent" diameter="40"></mat-spinner>
+      </ng-template>
+    </button>
+    <a routerLink="/login" mat-button class="register__link mat-body-2"
+      >Already have an account? Sign in here.</a
+    >
+  </form>
+</section>
