@@ -18,19 +18,21 @@ export class AuthService {
         password,
       })
       .pipe(
-        catchError(({ status }) => {
-          if (status >= 400 && status < 500) {
-            return of({ error: 'Username or password invalid' });
-          }
-
-          return of({
-            error: 'Something unexpected happened. Try again later',
-          });
-        })
+        catchError(({ status }) =>
+          this.handleError({
+            status,
+            error: { message: 'Username or password invalid' },
+          })
+        )
       );
   }
 
-  register(name: string, username: string, email: string, password: string) {
+  register(
+    name: string,
+    username: string,
+    email: string,
+    password: string
+  ): Observable<AuthRequestDetails> {
     return this.httpClient
       .post<AuthRequestDetails>('http://localhost:3333/api/v1/auth/register', {
         name,
@@ -38,16 +40,22 @@ export class AuthService {
         email,
         password,
       })
-      .pipe(
-        catchError(({ status, error }) => {
-          if (status >= 400 && status < 500) {
-            return of({ error: error.message });
-          }
+      .pipe(catchError(this.handleError));
+  }
 
-          return of({
-            error: 'Something unexpected happened. Try again later',
-          });
-        })
-      );
+  private handleError({
+    status,
+    error,
+  }: {
+    status: number;
+    error: { message: string };
+  }) {
+    if (status >= 400 && status < 500) {
+      return of({ error: error.message });
+    }
+
+    return of({
+      error: 'Something unexpected happened. Try again later',
+    });
   }
 }
