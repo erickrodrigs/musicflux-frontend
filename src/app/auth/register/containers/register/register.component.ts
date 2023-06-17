@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RegisterPayload } from 'src/app/auth/models/auth.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -103,12 +104,7 @@ export class RegisterComponent {
 
     this.loading = true;
     this.authService
-      .register(
-        name as string,
-        username as string,
-        email as string,
-        password as string
-      )
+      .register({ name, username, email, password } as RegisterPayload)
       .subscribe((response) => {
         this.loading = false;
         if (response.error) {

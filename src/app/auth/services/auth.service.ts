@@ -1,19 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
-
-export interface AuthRequestDetails {
-  token?: string;
-  error?: string;
-}
+import {
+  AuthResponseDetails,
+  LoginPayload,
+  RegisterPayload,
+} from '../models/auth.model';
 
 @Injectable()
 export class AuthService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  login(username: string, password: string): Observable<AuthRequestDetails> {
+  login({ username, password }: LoginPayload): Observable<AuthResponseDetails> {
     return this.httpClient
-      .post<AuthRequestDetails>('http://localhost:3333/api/v1/auth', {
+      .post<AuthResponseDetails>('http://localhost:3333/api/v1/auth', {
         username,
         password,
       })
@@ -27,14 +27,14 @@ export class AuthService {
       );
   }
 
-  register(
-    name: string,
-    username: string,
-    email: string,
-    password: string
-  ): Observable<AuthRequestDetails> {
+  register({
+    name,
+    username,
+    email,
+    password,
+  }: RegisterPayload): Observable<AuthResponseDetails> {
     return this.httpClient
-      .post<AuthRequestDetails>('http://localhost:3333/api/v1/auth/register', {
+      .post<AuthResponseDetails>('http://localhost:3333/api/v1/auth/register', {
         name,
         username,
         email,
