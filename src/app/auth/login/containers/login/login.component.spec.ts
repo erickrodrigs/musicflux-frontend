@@ -11,13 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
 import { LoginComponent } from './login.component';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import {
-  AuthRequestDetails,
-  AuthService,
-} from 'src/app/auth/services/auth.service';
+  AuthResponseDetails,
+  LoginPayload,
+} from 'src/app/auth/models/auth.model';
 
 class MockAuthService {
-  login(username: string, password: string): Observable<AuthRequestDetails> {
+  login({ username, password }: LoginPayload): Observable<AuthResponseDetails> {
     return of({ token: username + password });
   }
 }
@@ -136,10 +137,7 @@ describe('LoginComponent', () => {
 
       component.onSubmit();
 
-      expect(service.login).toHaveBeenCalledOnceWith(
-        formData.username,
-        formData.password
-      );
+      expect(service.login).toHaveBeenCalledOnceWith(formData);
     });
 
     it('should open snack bar when auth service returns an error property', () => {

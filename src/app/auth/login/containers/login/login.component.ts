@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../../../auth/services/auth.service';
+import { LoginPayload } from 'src/app/auth/models/auth.model';
 
 @Component({
   selector: 'app-login',
@@ -60,10 +61,9 @@ export class LoginComponent {
   onSubmit() {
     if (this.form.invalid) return;
 
-    const { username, password } = this.form.value;
     this.loading = true;
     this.authService
-      .login(username as string, password as string)
+      .login(this.form.value as LoginPayload)
       .subscribe((response) => {
         this.loading = false;
         if (response.error) {

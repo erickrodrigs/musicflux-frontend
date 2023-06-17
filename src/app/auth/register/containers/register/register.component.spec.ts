@@ -11,18 +11,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
 import { RegisterComponent } from './register.component';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import {
-  AuthRequestDetails,
-  AuthService,
-} from 'src/app/auth/services/auth.service';
+  AuthResponseDetails,
+  RegisterPayload,
+} from 'src/app/auth/models/auth.model';
 
 class MockAuthService {
-  register(
-    name: string,
-    username: string,
-    email: string,
-    password: string
-  ): Observable<AuthRequestDetails> {
+  register({
+    name,
+    username,
+    email,
+    password,
+  }: RegisterPayload): Observable<AuthResponseDetails> {
     return of({ token: name + username + email + password });
   }
 }
@@ -114,6 +115,7 @@ describe('RegisterComponent', () => {
         password: 'bar',
         passwordConfirmation: 'bar',
       };
+      const { name, username, email, password } = formData;
       spyOn(service, 'register').and.callThrough();
       spyOn(component, 'goToHome').and.callThrough();
       spyOn(component, 'openSnackBar').and.callThrough();
@@ -121,12 +123,12 @@ describe('RegisterComponent', () => {
 
       component.onSubmit();
 
-      expect(service.register).toHaveBeenCalledOnceWith(
-        formData.name,
-        formData.username,
-        formData.email,
-        formData.password
-      );
+      expect(service.register).toHaveBeenCalledOnceWith({
+        name,
+        username,
+        email,
+        password,
+      });
       expect(component.goToHome).toHaveBeenCalled();
       expect(component.openSnackBar).not.toHaveBeenCalled();
     });

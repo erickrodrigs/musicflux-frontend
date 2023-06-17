@@ -36,11 +36,9 @@ describe('AuthService', () => {
       const token = 'myToken';
       spyOn(httpClient, 'post').and.returnValue(createResponse({ token }));
 
-      service
-        .login(authCredentials.username, authCredentials.password)
-        .subscribe((response) => {
-          expect(response.token).toBe(token);
-        });
+      service.login(authCredentials).subscribe((response) => {
+        expect(response.token).toBe(token);
+      });
     });
 
     it('should return a proper error when login fails by invalid credentials', () => {
@@ -49,11 +47,9 @@ describe('AuthService', () => {
         throwError(() => new HttpErrorResponse({ status: 401 }))
       );
 
-      service
-        .login(authCredentials.username, authCredentials.password)
-        .subscribe((response) => {
-          expect(response.error).toBe(error);
-        });
+      service.login(authCredentials).subscribe((response) => {
+        expect(response.error).toBe(error);
+      });
     });
 
     it('should return a unexpected error when login fails by server error', () => {
@@ -62,11 +58,9 @@ describe('AuthService', () => {
         throwError(() => new HttpErrorResponse({ status: 500 }))
       );
 
-      service
-        .login(authCredentials.username, authCredentials.password)
-        .subscribe((response) => {
-          expect(response.error).toBe(error);
-        });
+      service.login(authCredentials).subscribe((response) => {
+        expect(response.error).toBe(error);
+      });
     });
   });
 
@@ -82,16 +76,9 @@ describe('AuthService', () => {
       const token = 'myToken';
       spyOn(httpClient, 'post').and.returnValue(createResponse({ token }));
 
-      service
-        .register(
-          registerInfo.name,
-          registerInfo.username,
-          registerInfo.email,
-          registerInfo.password
-        )
-        .subscribe((response) => {
-          expect(response.token).toBe(token);
-        });
+      service.register(registerInfo).subscribe((response) => {
+        expect(response.token).toBe(token);
+      });
     });
 
     it('should return a proper error when registration fails by server validation', () => {
@@ -103,16 +90,9 @@ describe('AuthService', () => {
         )
       );
 
-      service
-        .register(
-          registerInfo.name,
-          registerInfo.username,
-          registerInfo.email,
-          registerInfo.password
-        )
-        .subscribe((response) => {
-          expect(response.error).toBe(errorMsg);
-        });
+      service.register(registerInfo).subscribe((response) => {
+        expect(response.error).toBe(errorMsg);
+      });
     });
 
     it('should return a proper error when registration fails by server validation', () => {
@@ -129,16 +109,9 @@ describe('AuthService', () => {
         )
       );
 
-      service
-        .register(
-          registerInfo.name,
-          registerInfo.username,
-          registerInfo.email,
-          registerInfo.password
-        )
-        .subscribe((response) => {
-          expect(response.error).toBe(error);
-        });
+      service.register(registerInfo).subscribe((response) => {
+        expect(response.error).toBe(error);
+      });
     });
   });
 });
