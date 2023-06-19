@@ -6,22 +6,26 @@ import {
   LoginPayload,
   RegisterPayload,
 } from '../models/auth.model';
+import { ApiError } from 'src/app/shared/models/api.model';
 
 @Injectable()
 export class AuthService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  login({ username, password }: LoginPayload): Observable<AuthResponseDetails> {
+  login({
+    username,
+    password,
+  }: LoginPayload): Observable<AuthResponseDetails | ApiError> {
     return this.httpClient
       .post<AuthResponseDetails>('http://localhost:3333/api/v1/auth', {
         username,
         password,
       })
       .pipe(
-        catchError(({ status }) =>
+        catchError(({ error }) =>
           this.handleError({
-            status,
-            error: { message: 'Username or password invalid' },
+            ...error,
+            message: 'Username or password invalid',
           })
         )
       );
@@ -32,7 +36,7 @@ export class AuthService {
     username,
     email,
     password,
-  }: RegisterPayload): Observable<AuthResponseDetails> {
+  }: RegisterPayload): Observable<AuthResponseDetails | ApiError> {
     return this.httpClient
       .post<AuthResponseDetails>('http://localhost:3333/api/v1/auth/register', {
         name,
@@ -40,22 +44,17 @@ export class AuthService {
         email,
         password,
       })
-      .pipe(catchError(this.handleError));
+      .pipe(catchError(({ error }) => this.handleError(error)));
   }
 
-  private handleError({
-    status,
-    error,
-  }: {
-    status: number;
-    error: { message: string };
-  }) {
-    if (status >= 400 && status < 500) {
-      return of({ error: error.message });
+  private handleError(error: ApiError) {
+    if (error.status >= 400 && error.status < 500) {
+      return of(error);
     }
 
     return of({
-      error: 'Something unexpected happened. Try again later',
+      ...error,
+      message: 'Something unexpected happened. Try again later',
     });
   }
 }

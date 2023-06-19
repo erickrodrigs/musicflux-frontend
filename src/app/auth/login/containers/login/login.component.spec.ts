@@ -16,6 +16,7 @@ import {
   AuthResponseDetails,
   LoginPayload,
 } from 'src/app/auth/models/auth.model';
+import { ApiError } from 'src/app/shared/models/api.model';
 
 class MockAuthService {
   login({ username, password }: LoginPayload): Observable<AuthResponseDetails> {
@@ -142,7 +143,9 @@ describe('LoginComponent', () => {
 
     it('should open snack bar when auth service returns an error property', () => {
       const error = 'this is a error message';
-      spyOn(service, 'login').and.returnValue(of({ error }));
+      spyOn(service, 'login').and.returnValue(
+        of({ message: error } as ApiError)
+      );
       spyOn(component, 'openSnackBar').and.callThrough();
       component.form.setValue({ username: 'foo', password: 'bar' });
 

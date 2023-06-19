@@ -1,7 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { Observable, of, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { AuthResponseDetails } from '../models/auth.model';
+import { ApiError } from 'src/app/shared/models/api.model';
 
 const createResponse = <T>(body: T): Observable<T> => of(body);
 
@@ -37,29 +39,29 @@ describe('AuthService', () => {
       spyOn(httpClient, 'post').and.returnValue(createResponse({ token }));
 
       service.login(authCredentials).subscribe((response) => {
-        expect(response.token).toBe(token);
+        expect((response as AuthResponseDetails).token).toBe(token);
       });
     });
 
     it('should return a proper error when login fails by invalid credentials', () => {
       const error = 'Username or password invalid';
       spyOn(httpClient, 'post').and.returnValue(
-        throwError(() => new HttpErrorResponse({ status: 401 }))
+        throwError(() => ({ error: { status: 401 } }))
       );
 
       service.login(authCredentials).subscribe((response) => {
-        expect(response.error).toBe(error);
+        expect((response as ApiError).message).toBe(error);
       });
     });
 
     it('should return a unexpected error when login fails by server error', () => {
       const error = 'Something unexpected happened. Try again later';
       spyOn(httpClient, 'post').and.returnValue(
-        throwError(() => new HttpErrorResponse({ status: 500 }))
+        throwError(() => ({ status: 500 }))
       );
 
       service.login(authCredentials).subscribe((response) => {
-        expect(response.error).toBe(error);
+        expect((response as ApiError).message).toBe(error);
       });
     });
   });
@@ -77,40 +79,34 @@ describe('AuthService', () => {
       spyOn(httpClient, 'post').and.returnValue(createResponse({ token }));
 
       service.register(registerInfo).subscribe((response) => {
-        expect(response.token).toBe(token);
+        expect((response as AuthResponseDetails).token).toBe(token);
       });
     });
 
     it('should return a proper error when registration fails by server validation', () => {
       const errorMsg = 'This is a error that came from the server';
       spyOn(httpClient, 'post').and.returnValue(
-        throwError(
-          () =>
-            new HttpErrorResponse({ status: 401, error: { message: errorMsg } })
-        )
+        throwError(() => ({ error: { status: 401, message: errorMsg } }))
       );
 
       service.register(registerInfo).subscribe((response) => {
-        expect(response.error).toBe(errorMsg);
+        expect((response as ApiError).message).toBe(errorMsg);
       });
     });
 
     it('should return a proper error when registration fails by server validation', () => {
       const error = 'Something unexpected happened. Try again later';
       spyOn(httpClient, 'post').and.returnValue(
-        throwError(
-          () =>
-            new HttpErrorResponse({
-              status: 500,
-              error: {
-                message: 'Something else that is not gonna be returned',
-              },
-            })
-        )
+        throwError(() => ({
+          status: 500,
+          error: {
+            message: 'Something else that is not gonna be returned',
+          },
+        }))
       );
 
       service.register(registerInfo).subscribe((response) => {
-        expect(response.error).toBe(error);
+        expect((response as ApiError).message).toBe(error);
       });
     });
   });

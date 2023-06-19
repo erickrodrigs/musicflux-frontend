@@ -1,6 +1,5 @@
 export interface AuthResponseDetails {
-  token?: string;
-  error?: string;
+  token: string;
 }
 
 export interface LoginPayload {

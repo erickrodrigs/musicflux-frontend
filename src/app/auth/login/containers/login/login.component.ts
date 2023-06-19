@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../../../auth/services/auth.service';
 import { LoginPayload } from 'src/app/auth/models/auth.model';
+import { ApiError } from 'src/app/shared/models/api.model';
 
 @Component({
   selector: 'app-login',
@@ -66,8 +67,8 @@ export class LoginComponent {
       .login(this.form.value as LoginPayload)
       .subscribe((response) => {
         this.loading = false;
-        if (response.error) {
-          this.openSnackBar(response.error);
+        if ((response as ApiError).message) {
+          this.openSnackBar((response as ApiError).message);
           return;
         }
 
