@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RegisterPayload } from 'src/app/auth/models/auth.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { ApiError } from 'src/app/shared/models/api.model';
 
 @Component({
   selector: 'app-register',
@@ -107,8 +108,8 @@ export class RegisterComponent {
       .register({ name, username, email, password } as RegisterPayload)
       .subscribe((response) => {
         this.loading = false;
-        if (response.error) {
-          this.openSnackBar(response.error);
+        if ((response as ApiError).message) {
+          this.openSnackBar((response as ApiError).message);
           return;
         }
 

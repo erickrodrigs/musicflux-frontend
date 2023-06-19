@@ -16,6 +16,7 @@ import {
   AuthResponseDetails,
   RegisterPayload,
 } from 'src/app/auth/models/auth.model';
+import { ApiError } from 'src/app/shared/models/api.model';
 
 class MockAuthService {
   register({
@@ -202,7 +203,9 @@ describe('RegisterComponent', () => {
 
     it('should show error in snack bar when there is an error', () => {
       const error = 'Username already exists';
-      spyOn(service, 'register').and.returnValue(of({ error }));
+      spyOn(service, 'register').and.returnValue(
+        of({ message: error } as ApiError)
+      );
       spyOn(component, 'openSnackBar').and.callThrough();
       spyOn(component, 'goToHome').and.callThrough();
       component.form.setValue({
