@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { RegisterPayload } from 'src/app/auth/models/auth.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ApiError } from 'src/app/shared/models/api.model';
 
 @Component({
-  selector: 'app-register',
+  selector: 'register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
@@ -25,7 +26,8 @@ export class RegisterComponent {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly authService: AuthService,
-    private readonly snackBar: MatSnackBar
+    private readonly snackBar: MatSnackBar,
+    private readonly router: Router
   ) {}
 
   get passwordInputType() {
@@ -124,6 +126,6 @@ export class RegisterComponent {
   }
 
   goToHome() {
-    console.log('going to home...');
+    this.router.navigate(['/']);
   }
 }

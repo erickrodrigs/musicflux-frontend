@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from '../../../../auth/services/auth.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { LoginPayload } from 'src/app/auth/models/auth.model';
 import { ApiError } from 'src/app/shared/models/api.model';
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -22,7 +23,8 @@ export class LoginComponent {
   constructor(
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
-    private readonly snackBar: MatSnackBar
+    private readonly snackBar: MatSnackBar,
+    private readonly router: Router
   ) {}
 
   get passwordInputType() {
@@ -83,6 +85,6 @@ export class LoginComponent {
   }
 
   goToHome() {
-    console.log('going to home...');
+    this.router.navigate(['/']);
   }
 }
