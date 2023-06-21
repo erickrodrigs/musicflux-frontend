@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import {
   AuthResponseDetails,
   LoginPayload,
@@ -12,6 +12,10 @@ import { ApiError } from 'src/app/shared/models/api.model';
 export class AuthService {
   constructor(private readonly httpClient: HttpClient) {}
 
+  get authToken(): Observable<string> {
+    return of(localStorage.getItem('auth_token') || '');
+  }
+
   login({
     username,
     password,
@@ -21,6 +25,12 @@ export class AuthService {
         username,
         password,
       })
+      .pipe(
+        map((response) => {
+          localStorage.setItem('auth_token', response.token);
+          return response;
+        })
+      )
       .pipe(
         catchError(({ error }) =>
           this.handleError({
@@ -44,6 +54,12 @@ export class AuthService {
         email,
         password,
       })
+      .pipe(
+        map((response) => {
+          localStorage.setItem('auth_token', response.token);
+          return response;
+        })
+      )
       .pipe(catchError(({ error }) => this.handleError(error)));
   }
 
