@@ -1,0 +1,25 @@
+<mat-drawer-container class="nav-menu" autosize>
+  <mat-drawer class="nav-menu__container" mode="side" opened>
+    <div class="nav-menu__wrapper">
+      <div>
+        <h1 class="mat-headline-4">Musicflux</h1>
+        <div class="nav-menu__option" *ngFor="let option of menuOptions">
+          <mat-icon>{{ option.iconName }}</mat-icon>
+          <a [routerLink]="option.link" class="mat-headline-5">{{
+            option.name
+          }}</a>
+        </div>
+      </div>
+      <div>
+        <div class="nav-menu__option">
+          <mat-icon>logout</mat-icon>
+          <a routerLink class="mat-headline-6">Log out</a>
+        </div>
+        <div class="nav-menu__option">
+          <mat-icon>account_circle</mat-icon>
+          <a routerLink class="mat-headline-6">Profile</a>
+        </div>
+      </div>
+    </div>
+  </mat-drawer>
+</mat-drawer-container>
