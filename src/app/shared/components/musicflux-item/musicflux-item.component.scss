@@ -1,0 +1,12 @@
+.musicflux-item {
+  &__rounded {
+    border-radius: 100%;
+  }
+
+  &__description {
+    margin-top: 1rem;
+    p {
+      text-align: center;
+    }
+  }
+}
