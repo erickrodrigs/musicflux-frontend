@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['nav-menu.component.scss'],
   templateUrl: 'nav-menu.component.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, MatSidenavModule, RouterModule, MatIconModule],
 })
 export class NavMenuComponent {
