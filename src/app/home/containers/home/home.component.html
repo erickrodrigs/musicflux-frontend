@@ -1,1 +1,13 @@
-<div>Home!</div>
+<div class="home">
+  <nav-menu></nav-menu>
+  <main class="home__container" #mainContainer>
+    <h2 class="mat-headline-4">Welcome back, Erick!</h2>
+
+    <section>
+      <h3 class="mat-headline-5">Recently played</h3>
+      <div class="home__list-wrapper">
+        <horizontal-list [items]="items"></horizontal-list>
+      </div>
+    </section>
+  </main>
+</div>
