@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { AuthModule } from '../auth/auth.module';
 import { HomeComponent } from './containers/home/home.component';
+import { NavMenuComponent } from '../shared/components/nav-menu/nav-menu.component';
+import { HorizontalListComponent } from '../shared/components/horizontal-list/horizontal-list.component';
 
 const ROUTES: Routes = [
   {
@@ -14,6 +16,11 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [RouterModule.forChild(ROUTES), AuthModule.forRoot()],
+  imports: [
+    RouterModule.forChild(ROUTES),
+    AuthModule.forRoot(),
+    NavMenuComponent,
+    HorizontalListComponent,
+  ],
 })
 export class HomeModule {}
