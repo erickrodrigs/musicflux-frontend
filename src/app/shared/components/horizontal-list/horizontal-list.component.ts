@@ -12,5 +12,8 @@ import { CommonModule } from '@angular/common';
 })
 export class HorizontalListComponent {
   @Input()
-  items: any[];
+  items: any[] = [];
+
+  @Input()
+  roundedItems = false;
 }
