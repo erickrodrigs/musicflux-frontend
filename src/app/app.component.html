@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container
+  class="app"
+  *ngIf="isAuthenticated; else showLogin"
+  autosize
+>
+  <mat-sidenav class="app__sidenav" mode="side" opened fixedInViewport>
+    <nav-menu></nav-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #showLogin>
+  <router-outlet></router-outlet>
+</ng-template>

@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { HomeModule } from './home/home.module';
+import { SearchModule } from './search/search.module';
+import { NavMenuComponent } from './shared/components/nav-menu/nav-menu.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', loadChildren: () => HomeModule },
+  { path: 'search', pathMatch: 'full', loadChildren: () => SearchModule },
 ];
 
 @NgModule({
@@ -18,6 +22,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     AuthModule.forRoot(),
+    NavMenuComponent,
+    MatSidenavModule,
   ],
   bootstrap: [AppComponent],
 })
