@@ -1,4 +1,9 @@
 .musicflux-item {
+  &__card {
+    width: 150px;
+    height: 150px;
+  }
+
   &__rounded {
     border-radius: 100%;
   }
