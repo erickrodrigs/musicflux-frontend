@@ -21,7 +21,7 @@
       <input
         matInput
         name="password"
-        [type]="passwordInputType"
+        [type]="getPasswordInputType()"
         formControlName="password"
       />
       <button
@@ -29,7 +29,7 @@
         matSuffix
         (click)="$event.preventDefault(); onPasswordIconTouch()"
       >
-        <mat-icon>{{ passwordIconName }}</mat-icon>
+        <mat-icon>{{ getPasswordIconName() }}</mat-icon>
       </button>
       <mat-error *ngIf="isPasswordInvalid">{{ passwordError }}</mat-error>
     </mat-form-field>
@@ -38,15 +38,15 @@
       <input
         matInput
         name="passwordConfirmation"
-        [type]="passwordInputType"
+        [type]="getPasswordInputType('confirmation')"
         formControlName="passwordConfirmation"
       />
       <button
         mat-icon-button
         matSuffix
-        (click)="$event.preventDefault(); onPasswordIconTouch()"
+        (click)="$event.preventDefault(); onPasswordConfirmationIconTouch()"
       >
-        <mat-icon>{{ passwordIconName }}</mat-icon>
+        <mat-icon>{{ getPasswordIconName('confirmation') }}</mat-icon>
       </button>
       <mat-error *ngIf="isPasswordConfirmationInvalid">{{
         passwordConfirmationError

@@ -14,6 +14,7 @@ import { ApiError } from 'src/app/shared/models/api.model';
 export class RegisterComponent {
   loading = false;
   hidePassword = true;
+  hidePasswordConfirmation = true;
 
   form = this.formBuilder.group({
     name: ['', Validators.required],
@@ -29,14 +30,6 @@ export class RegisterComponent {
     private readonly snackBar: MatSnackBar,
     private readonly router: Router
   ) {}
-
-  get passwordInputType() {
-    return this.hidePassword ? 'password' : 'text';
-  }
-
-  get passwordIconName() {
-    return this.hidePassword ? 'visibility_off' : 'visibility';
-  }
 
   get isNameInvalid() {
     return this.checkIfFieldIsInvalid('name', 'required');
@@ -87,6 +80,26 @@ export class RegisterComponent {
 
   onPasswordIconTouch() {
     this.hidePassword = !this.hidePassword;
+  }
+
+  onPasswordConfirmationIconTouch() {
+    this.hidePasswordConfirmation = !this.hidePasswordConfirmation;
+  }
+
+  getPasswordInputType(type: 'default' | 'confirmation' = 'default') {
+    if (type === 'confirmation') {
+      return this.hidePasswordConfirmation ? 'password' : 'text';
+    }
+
+    return this.hidePassword ? 'password' : 'text';
+  }
+
+  getPasswordIconName(type: 'default' | 'confirmation' = 'default') {
+    if (type === 'confirmation') {
+      return this.hidePasswordConfirmation ? 'visibility_off' : 'visibility';
+    }
+
+    return this.hidePassword ? 'visibility_off' : 'visibility';
   }
 
   checkIfFieldIsInvalid(fieldName: string, validation: string) {
