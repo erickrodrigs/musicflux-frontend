@@ -12,8 +12,10 @@ import { ApiError } from 'src/app/shared/models/api.model';
 export class AuthService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  get authToken(): Observable<string> {
-    return of(localStorage.getItem('auth_token') || '');
+  get isAuthenticated(): boolean {
+    const token = localStorage.getItem('auth_token') || '';
+
+    return token !== '' && !this.isTokenExpired(token);
   }
 
   login({
@@ -61,6 +63,11 @@ export class AuthService {
         })
       )
       .pipe(catchError(({ error }) => this.handleError(error)));
+  }
+
+  private isTokenExpired(token: string): boolean {
+    const expiry = JSON.parse(atob(token.split('.')[1])).exp;
+    return Math.floor(new Date().getTime() / 1000) >= expiry;
   }
 
   private handleError(error: ApiError) {
