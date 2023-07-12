@@ -1,0 +1,41 @@
+<main class="search">
+  <section class="search__options">
+    <mat-form-field class="search__options__input">
+      <mat-label>Search</mat-label>
+      <input matInput type="text" [(ngModel)]="search" />
+      <button mat-icon-button matSuffix (click)="onSearch()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-chip-listbox class="search__chip-set" multiple>
+      <mat-chip-option
+        [selected]="option.selected"
+        (selectionChange)="onFilterOptionSelectionChange(option)"
+        *ngFor="let option of filterOptions"
+        >{{ option.name }}</mat-chip-option
+      >
+    </mat-chip-listbox>
+  </section>
+  <section class="search__results">
+    <h2 class="mat-headline-4">Results</h2>
+    <div class="search__results__category" *ngIf="showArtists">
+      <h4 class="mat-headline-6">Artists</h4>
+      <horizontal-list
+        [items]="artists"
+        [roundedItems]="true"
+      ></horizontal-list>
+    </div>
+    <div class="search__results__category" *ngIf="showAlbums">
+      <h4 class="mat-headline-6">Albums</h4>
+      <horizontal-list [items]="albums"></horizontal-list>
+    </div>
+    <div class="search__results__category" *ngIf="showTracks">
+      <h4 class="mat-headline-6">Tracks</h4>
+      <horizontal-list [items]="tracks"></horizontal-list>
+    </div>
+    <div class="search__results__category" *ngIf="showPlaylists">
+      <h4 class="mat-headline-6">Playlists</h4>
+      <horizontal-list [items]="playlists"></horizontal-list>
+    </div>
+  </section>
+</main>
