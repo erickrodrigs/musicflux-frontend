@@ -6,15 +6,14 @@
 
   &__option {
     display: flex;
-    width: 80%;
     align-items: center;
     margin-bottom: 1rem;
+    text-decoration: none;
+    color: white;
 
-    a {
+    p {
       margin-bottom: 0;
-      margin-left: 1rem;
-      text-decoration: none;
-      color: white;
+      margin-left: 0.8rem;
     }
   }
 }

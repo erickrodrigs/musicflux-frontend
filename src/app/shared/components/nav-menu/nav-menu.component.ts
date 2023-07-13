@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
@@ -12,6 +12,9 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule, MatIconModule],
 })
 export class NavMenuComponent {
+  @Input()
+  isMobile = false;
+
   menuOptions = [
     { iconName: 'home', name: 'Home', link: '' },
     { iconName: 'search', name: 'Search', link: '/search' },

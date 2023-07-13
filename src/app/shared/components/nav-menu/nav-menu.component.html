@@ -1,19 +1,22 @@
 <div class="nav-menu">
   <div>
-    <h1 class="mat-headline-4">Musicflux</h1>
-    <div class="nav-menu__option" *ngFor="let option of menuOptions">
+    <a
+      class="nav-menu__option"
+      [routerLink]="option.link"
+      *ngFor="let option of menuOptions"
+    >
       <mat-icon>{{ option.iconName }}</mat-icon>
-      <a [routerLink]="option.link" class="mat-headline-6">{{ option.name }}</a>
-    </div>
+      <p class="mat-headline-6" *ngIf="!isMobile">{{ option.name }}</p>
+    </a>
   </div>
   <div>
-    <div class="nav-menu__option">
+    <a routerLink class="nav-menu__option">
       <mat-icon>logout</mat-icon>
-      <a routerLink class="mat-headline-6">Log out</a>
-    </div>
-    <div class="nav-menu__option">
+      <p *ngIf="!isMobile" class="mat-headline-6">Log out</p>
+    </a>
+    <a routerLink class="nav-menu__option">
       <mat-icon>account_circle</mat-icon>
-      <a routerLink class="mat-headline-6">Profile</a>
-    </div>
+      <p *ngIf="!isMobile" class="mat-headline-6">Profile</p>
+    </a>
   </div>
 </div>
