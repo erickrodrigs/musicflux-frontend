@@ -12,4 +12,8 @@ export class AppComponent {
   get isAuthenticated() {
     return this.authService.isAuthenticated;
   }
+
+  get isMobile() {
+    return window.innerWidth < 768;
+  }
 }
