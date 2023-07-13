@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
@@ -32,6 +33,12 @@ export class SearchComponent {
     coverUrl: '',
     name: 'Playlist name',
   }));
+
+  constructor(private readonly location: Location) {}
+
+  get isMobile() {
+    return window.innerWidth < 768;
+  }
 
   get showAll() {
     return this.filterOptions.every(({ selected }) => !selected);
@@ -71,5 +78,9 @@ export class SearchComponent {
 
   onSearch() {
     console.log(`searching for ${this.search}...`);
+  }
+
+  onBackButtonToggle() {
+    this.location.back();
   }
 }

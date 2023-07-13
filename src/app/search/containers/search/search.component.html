@@ -1,13 +1,25 @@
 <main class="search">
   <section class="search__options">
-    <mat-form-field class="search__options__input">
-      <mat-label>Search</mat-label>
-      <input matInput type="text" [(ngModel)]="search" />
-      <button mat-icon-button matSuffix (click)="onSearch()">
-        <mat-icon>search</mat-icon>
+    <div class="search__options__input-wrapper">
+      <button
+        mat-icon-button
+        class="search__options__input-wrapper__back-button"
+        (click)="onBackButtonToggle()"
+      >
+        <mat-icon>arrow_back</mat-icon>
       </button>
-    </mat-form-field>
-    <mat-chip-listbox class="search__chip-set" multiple>
+      <mat-form-field class="search__options__input-wrapper__input">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [(ngModel)]="search" />
+        <button mat-icon-button matSuffix (click)="onSearch()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <mat-chip-listbox
+      [class]="isMobile ? 'mat-mdc-chip-set-stacked' : ''"
+      multiple
+    >
       <mat-chip-option
         [selected]="option.selected"
         (selectionChange)="onFilterOptionSelectionChange(option)"
