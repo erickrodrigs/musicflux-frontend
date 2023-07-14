@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Artist } from '../../models/artist';
 
 @Component({
   selector: 'artist-header',
@@ -8,5 +9,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class ArtistHeaderComponent {
   @Input()
-  artist: any;
+  artist: Artist;
 }
