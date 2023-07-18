@@ -4,4 +4,16 @@
   &__header {
     height: 40%;
   }
+
+  &__content-wrapper {
+    padding: 1 0rem;
+
+    &__popular-title {
+      margin: 1rem 2rem;
+    }
+
+    &__popular-songs > *:not(:last-child) {
+      margin-bottom: 0.6rem;
+    }
+  }
 }

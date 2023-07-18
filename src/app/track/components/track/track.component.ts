@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Track } from '../../models/track';
 
 @Component({
   selector: 'musicflux-track',
@@ -8,7 +9,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class TrackComponent {
   @Input()
-  track: any;
+  track: Track;
 
   @Input()
   trackNumber: number;
@@ -29,7 +30,7 @@ export class TrackComponent {
   }
 
   get artistsNames() {
-    return this.track.artists.map((artist: any) => artist.name).join(', ');
+    return this.track.artists.map((artist) => artist.name).join(', ');
   }
 
   get numberOfPlays() {
