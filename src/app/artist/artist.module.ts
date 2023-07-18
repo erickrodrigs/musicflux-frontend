@@ -11,6 +11,7 @@ import { ArtistHeaderComponent } from './components/artist-header/artist-header.
 import { ArtistTopSongsComponent } from './components/artist-top-songs/artist-top-songs.component';
 import { ArtistDiscographyComponent } from './components/artist-discography/artist-discography.component';
 import { HorizontalListComponent } from '../shared/components/horizontal-list/horizontal-list.component';
+import { ArtistBiographyComponent } from './components/artist-biography/artist-biography.component';
 
 const routes: Routes = [
   { path: ':id', canActivate: [AuthGuard], component: ArtistComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
     ArtistHeaderComponent,
     ArtistTopSongsComponent,
     ArtistDiscographyComponent,
+    ArtistBiographyComponent,
   ],
   imports: [
     CommonModule,
