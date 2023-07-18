@@ -1,0 +1,51 @@
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'musicflux-track',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: 'track.component.html',
+  styleUrls: ['track.component.scss'],
+})
+export class TrackComponent {
+  @Input()
+  track: any;
+
+  @Input()
+  trackNumber: number;
+
+  @Input()
+  showArtistName = false;
+
+  @Input()
+  showAlbumCover = true;
+
+  @Input()
+  showNumberOfPlays = true;
+
+  showPlayButton = false;
+
+  get isMobile() {
+    return window.innerWidth < 768;
+  }
+
+  get artistsNames() {
+    return this.track.artists.map((artist: any) => artist.name).join(', ');
+  }
+
+  get numberOfPlays() {
+    return this.track.numberOfPlays
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  get trackLength() {
+    const minutes = Math.floor(this.track.length / 60);
+    const seconds = this.track.length - minutes * 60;
+
+    return `${minutes}:${seconds}`;
+  }
+
+  get favoriteIconName() {
+    return this.track.liked ? 'favorite' : 'favorite_border';
+  }
+}
