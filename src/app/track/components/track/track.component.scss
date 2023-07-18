@@ -1,0 +1,55 @@
+.track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  transition: 0.3s;
+
+  &__title-wrapper {
+    display: flex;
+    align-items: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__additional {
+    margin-left: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    p {
+      margin-right: 3rem;
+    }
+  }
+
+  &__title-content {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    
+    p {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  &:hover {
+    background-color: #555555;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.mr-2 {
+  margin-right: 2rem;
+}
+

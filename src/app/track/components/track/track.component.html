@@ -1,0 +1,58 @@
+<article>
+  <!-- mobile -->
+  <div *ngIf="isMobile" class="track">
+    <div class="track__title-wrapper">
+      <p class="mat-body-2">{{ trackNumber }}</p>
+      <div class="ml-1 track__title-content">
+        <p class="mat-body-2">{{ track.title }}</p>
+        <p *ngIf="!showArtistName" class="mat-caption">
+          {{ numberOfPlays }}
+        </p>
+        <p *ngIf="showArtistName" class="mat-caption">{{ artistsNames }}</p>
+      </div>
+    </div>
+    <div class="track__additional">
+      <button mat-icon-button>
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- desktop -->
+  <div
+    *ngIf="!isMobile"
+    class="track"
+    (mouseenter)="showPlayButton = true"
+    (mouseleave)="showPlayButton = false"
+  >
+    <div class="track__title-wrapper">
+      <button class="track__play-btn" mat-icon-button>
+        <p *ngIf="!showPlayButton" class="mat-body-2">{{ trackNumber }}</p>
+        <mat-icon mat-button *ngIf="showPlayButton">play_arrow</mat-icon>
+      </button>
+      <img
+        *ngIf="showAlbumCover"
+        [src]="track.album.coverUrl"
+        [alt]="track.album.title"
+        width="36"
+        height="36"
+      />
+      <div class="ml-1 track__title-content">
+        <p class="mat-body-2">{{ track.title }}</p>
+        <p *ngIf="showArtistName" class="mat-caption">{{ artistsNames }}</p>
+      </div>
+    </div>
+    <div class="track__additional">
+      <p *ngIf="showNumberOfPlays" class="mat-body-2">
+        {{ numberOfPlays }}
+      </p>
+      <p class="mat-body-2 mr-2">{{ trackLength }}</p>
+      <button mat-icon-button>
+        <mat-icon color="primary">{{ favoriteIconName }}</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </div>
+  </div>
+</article>
