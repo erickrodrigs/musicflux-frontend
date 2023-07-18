@@ -9,6 +9,8 @@ import { TrackModule } from '../track/track.module';
 import { ArtistComponent } from './containers/artist/artist.component';
 import { ArtistHeaderComponent } from './components/artist-header/artist-header.component';
 import { ArtistTopSongsComponent } from './components/artist-top-songs/artist-top-songs.component';
+import { ArtistDiscographyComponent } from './components/artist-discography/artist-discography.component';
+import { HorizontalListComponent } from '../shared/components/horizontal-list/horizontal-list.component';
 
 const routes: Routes = [
   { path: ':id', canActivate: [AuthGuard], component: ArtistComponent },
@@ -19,6 +21,7 @@ const routes: Routes = [
     ArtistComponent,
     ArtistHeaderComponent,
     ArtistTopSongsComponent,
+    ArtistDiscographyComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +30,7 @@ const routes: Routes = [
     MatButtonModule,
     MatIconModule,
     TrackModule,
+    HorizontalListComponent,
   ],
 })
 export class ArtistModule {}
