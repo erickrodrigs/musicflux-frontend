@@ -8,13 +8,18 @@ import { AuthGuard } from '../auth/guards/auth.guard';
 import { TrackModule } from '../track/track.module';
 import { ArtistComponent } from './containers/artist/artist.component';
 import { ArtistHeaderComponent } from './components/artist-header/artist-header.component';
+import { ArtistTopSongsComponent } from './components/artist-top-songs/artist-top-songs.component';
 
 const routes: Routes = [
   { path: ':id', canActivate: [AuthGuard], component: ArtistComponent },
 ];
 
 @NgModule({
-  declarations: [ArtistComponent, ArtistHeaderComponent],
+  declarations: [
+    ArtistComponent,
+    ArtistHeaderComponent,
+    ArtistTopSongsComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

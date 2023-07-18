@@ -1,16 +1,6 @@
 <main class="artist">
   <artist-header [artist]="artist"></artist-header>
   <section class="artist__content-wrapper">
-    <h3 class="mat-headline-6 artist__content-wrapper__popular-title">
-      Popular
-    </h3>
-    <div class="artist__content-wrapper__popular-songs">
-      <div *ngFor="let track of tracks; index as i">
-        <musicflux-track
-          [track]="track"
-          [trackNumber]="i + 1"
-        ></musicflux-track>
-      </div>
-    </div>
+    <artist-top-songs [tracks]="tracks"></artist-top-songs>
   </section>
 </main>

@@ -1,0 +1,8 @@
+<ng-container>
+  <h3 class="mat-headline-6 popular-title">Popular</h3>
+  <div class="popular-songs">
+    <div *ngFor="let track of tracks; index as i">
+      <musicflux-track [track]="track" [trackNumber]="i + 1"></musicflux-track>
+    </div>
+  </div>
+</ng-container>
