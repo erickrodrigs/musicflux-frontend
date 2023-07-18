@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthModule } from '../auth/auth.module';
 import { AuthGuard } from '../auth/guards/auth.guard';
+import { TrackModule } from '../track/track.module';
 import { ArtistComponent } from './containers/artist/artist.component';
 import { ArtistHeaderComponent } from './components/artist-header/artist-header.component';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
     AuthModule.forRoot(),
     MatButtonModule,
     MatIconModule,
+    TrackModule,
   ],
 })
 export class ArtistModule {}
