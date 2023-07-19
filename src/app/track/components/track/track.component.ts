@@ -43,6 +43,10 @@ export class TrackComponent {
     const minutes = Math.floor(this.track.length / 60);
     const seconds = this.track.length - minutes * 60;
 
+    if (seconds <= 9) {
+      return `${minutes}:0${seconds}`;
+    }
+
     return `${minutes}:${seconds}`;
   }
 

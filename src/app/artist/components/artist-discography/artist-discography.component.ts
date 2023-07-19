@@ -12,9 +12,9 @@ export class ArtistDiscographyComponent {
   albums: Album[] = [];
 
   get items() {
-    return this.albums.map(({ title, releaseDate, coverUrl }) => ({
+    return this.albums.reverse().map(({ title, releaseDate, coverUrl }) => ({
       name: title,
-      description: releaseDate.getFullYear(),
+      description: new Date(Date.parse(releaseDate)).getFullYear(),
       coverUrl,
     }));
   }

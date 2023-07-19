@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +13,7 @@ import { ArtistTopSongsComponent } from './components/artist-top-songs/artist-to
 import { ArtistDiscographyComponent } from './components/artist-discography/artist-discography.component';
 import { HorizontalListComponent } from '../shared/components/horizontal-list/horizontal-list.component';
 import { ArtistBiographyComponent } from './components/artist-biography/artist-biography.component';
+import { ArtistService } from './services/artist.service';
 
 const routes: Routes = [
   { path: ':id', canActivate: [AuthGuard], component: ArtistComponent },
@@ -27,6 +29,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule.forChild(routes),
     AuthModule.forRoot(),
     MatButtonModule,
@@ -34,5 +37,6 @@ const routes: Routes = [
     TrackModule,
     HorizontalListComponent,
   ],
+  providers: [ArtistService],
 })
 export class ArtistModule {}
