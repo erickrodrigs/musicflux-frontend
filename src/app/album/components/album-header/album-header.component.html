@@ -1,0 +1,20 @@
+<header class="album-header">
+  <button mat-icon-button>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <div class="album-header__content">
+    <img [src]="album.coverUrl" [alt]="album.title" />
+    <div class="album-header__content__info">
+      <h1 class="mat-headline-4 album-header__content__info__title">
+        {{ album.title }}
+      </h1>
+      <h3 class="mat-headline-6 album-header__content__info__artist">
+        {{ artists }}
+      </h3>
+      <div class="album-header__content__info__length-and-date">
+        <p class="mat-body-1">{{ lengthString }}</p>
+        <p class="mat-body-1">{{ releaseDate }}</p>
+      </div>
+    </div>
+  </div>
+</header>

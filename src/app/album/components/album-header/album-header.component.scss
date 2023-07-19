@@ -1,0 +1,87 @@
+.album-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #424242;
+
+  button {
+    margin: 2rem;
+    border-radius: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem 2rem 2rem;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      align-self: center;
+
+      @media screen and (min-width: 768px) {
+        align-self: flex-start;
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @media screen and (min-width: 768px) {
+        align-items: flex-start;
+        margin-left: 2rem;
+      }
+
+      &__title {
+        margin: 1rem 0;
+        text-align: center;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        white-space: pre-wrap;
+
+        @media screen and (min-width: 768px) {
+          -webkit-line-clamp: 1;
+          white-space: normal;
+          margin-top: 0;
+        }
+      }
+
+      &__artist {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        white-space: pre-wrap;
+
+        @media screen and (min-width: 768px) {
+          -webkit-line-clamp: 1;
+          white-space: normal;
+        }
+      }
+
+      &__length-and-date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @media screen and (min-width: 768px) {
+          flex-direction: row;
+          align-items: flex-start;
+
+          & > *:not(:last-child) {
+            margin-right: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
