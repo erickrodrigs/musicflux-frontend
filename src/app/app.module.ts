@@ -9,12 +9,14 @@ import { AuthModule } from './auth/auth.module';
 import { HomeModule } from './home/home.module';
 import { SearchModule } from './search/search.module';
 import { ArtistModule } from './artist/artist.module';
+import { AlbumModule } from './album/album.module';
 import { NavMenuComponent } from './shared/components/nav-menu/nav-menu.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', loadChildren: () => HomeModule },
   { path: 'search', pathMatch: 'full', loadChildren: () => SearchModule },
   { path: 'artists', pathMatch: 'prefix', loadChildren: () => ArtistModule },
+  { path: 'albums', pathMatch: 'prefix', loadChildren: () => AlbumModule },
 ];
 
 @NgModule({
