@@ -1,0 +1,11 @@
+<section>
+  <div *ngFor="let track of tracks; index as i">
+    <musicflux-track
+      [track]="track"
+      [trackNumber]="i + 1"
+      [showArtistName]="true"
+      [showAlbumCover]="false"
+      [showNumberOfPlays]="false"
+    ></musicflux-track>
+  </div>
+</section>
