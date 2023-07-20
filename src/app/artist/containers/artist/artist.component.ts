@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, of, switchMap } from 'rxjs';
 import { ArtistService } from '../../services/artist.service';
@@ -19,7 +20,8 @@ export class ArtistComponent implements OnInit {
   constructor(
     private readonly artistService: ArtistService,
     private readonly router: Router,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly location: Location
   ) {}
 
   ngOnInit() {
@@ -40,6 +42,10 @@ export class ArtistComponent implements OnInit {
         this.albums = albums;
         this.topTracks = topTracks;
       });
+  }
+
+  backToPreviousPage() {
+    this.location.back();
   }
 
   goToAlbumPage(albumId: number) {
