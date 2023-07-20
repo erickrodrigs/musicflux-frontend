@@ -1,5 +1,8 @@
 <main class="artist">
-  <artist-header [artist]="artist"></artist-header>
+  <artist-header
+    [artist]="artist"
+    (backButtonClick)="backToPreviousPage()"
+  ></artist-header>
   <section class="artist__content-wrapper">
     <artist-top-songs [tracks]="topTracks"></artist-top-songs>
     <artist-discography

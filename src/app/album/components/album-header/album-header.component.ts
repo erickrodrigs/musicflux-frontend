@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Album } from '../../models/album';
 
 @Component({
@@ -13,6 +19,9 @@ export class AlbumHeaderComponent {
 
   @Input()
   albumLength = 0;
+
+  @Output()
+  backButtonClick = new EventEmitter<void>();
 
   get artists() {
     return this.album.artists.map((artist) => artist.name).join(', ');

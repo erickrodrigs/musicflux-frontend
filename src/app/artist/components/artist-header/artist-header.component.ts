@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Artist } from '../../models/artist';
 
 @Component({
@@ -10,4 +16,7 @@ import { Artist } from '../../models/artist';
 export class ArtistHeaderComponent {
   @Input()
   artist: Artist;
+
+  @Output()
+  backButtonClick = new EventEmitter<void>();
 }

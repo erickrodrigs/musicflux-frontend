@@ -1,6 +1,6 @@
 <header>
   <img [src]="artist.photoUrl" [alt]="artist.name" />
-  <button mat-icon-button>
+  <button mat-icon-button (click)="backButtonClick.emit()">
     <mat-icon>arrow_back</mat-icon>
   </button>
   <h1 class="mat-headline-2">{{ artist.name }}</h1>
