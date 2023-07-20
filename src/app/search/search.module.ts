@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
-import { NavMenuComponent } from '../shared/components/nav-menu/nav-menu.component';
+import { AuthModule } from '../auth/auth.module';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { SearchComponent } from './containers/search/search.component';
-import { AuthModule } from '../auth/auth.module';
 import { HorizontalListComponent } from '../shared/components/horizontal-list/horizontal-list.component';
+import { SearchService } from './services/search.service';
 
 const ROUTES: Routes = [
   { path: '', canActivate: [AuthGuard], component: SearchComponent },
@@ -21,10 +22,10 @@ const ROUTES: Routes = [
   declarations: [SearchComponent],
   imports: [
     CommonModule,
-    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forChild(ROUTES),
     AuthModule.forRoot(),
-    NavMenuComponent,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -32,5 +33,6 @@ const ROUTES: Routes = [
     MatChipsModule,
     HorizontalListComponent,
   ],
+  providers: [SearchService],
 })
 export class SearchModule {}
