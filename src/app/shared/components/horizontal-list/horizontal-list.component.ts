@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MusicfluxItemComponent } from '../musicflux-item/musicflux-item.component';
 import { CommonModule } from '@angular/common';
+import { MusicfluxItemComponent } from '../musicflux-item/musicflux-item.component';
+import { MusicfluxItem } from '../../models/musicflux-item';
 
 @Component({
   selector: 'horizontal-list',
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HorizontalListComponent {
   @Input()
-  items: any[] = [];
+  items: MusicfluxItem[] = [];
 
   @Input()
   roundedItems = false;

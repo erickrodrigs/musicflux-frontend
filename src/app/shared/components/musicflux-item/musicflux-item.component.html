@@ -1,16 +1,16 @@
 <article class="musicflux-item">
   <mat-card [class]="'musicflux-item__card ' + classNameBasedOnRoundedProp">
     <img
-      *ngIf="coverUrl"
+      *ngIf="item.coverUrl"
       mat-card-image
-      [src]="coverUrl"
+      [src]="item.coverUrl"
       width="150"
       height="150"
       alt="Musicflux item cover"
     />
   </mat-card>
   <div class="musicflux-item__description">
-    <p class="mat-body-2">{{ name }}</p>
-    <p class="mat-caption" *ngIf="description">{{ description }}</p>
+    <p class="mat-body-2">{{ item.name }}</p>
+    <p class="mat-caption" *ngIf="item.description">{{ item.description }}</p>
   </div>
 </article>

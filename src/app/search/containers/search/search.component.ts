@@ -40,6 +40,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   get artists() {
     return this.result.artists.map((artist) => ({
+      id: artist.id,
       name: artist.name,
       coverUrl:
         artist.photoUrl ===
@@ -51,6 +52,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   get albums() {
     return this.result.albums.map((album) => ({
+      id: album.id,
       name: album.title,
       description: album.artists.map(({ name }) => name).join(', '),
       coverUrl: album.coverUrl,
@@ -59,6 +61,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   get tracks() {
     return this.result.tracks.map((track) => ({
+      id: track.id,
       name: track.title,
       description: track.artists.map(({ name }) => name).join(', '),
       coverUrl: track.album.coverUrl,
@@ -66,8 +69,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   get playlists() {
-    return Array.from({ length: 2 }).map(() => ({
-      coverUrl: '',
+    return Array.from({ length: 2 }).map((_, index) => ({
+      id: index + 1,
       name: 'Playlist name',
     }));
   }

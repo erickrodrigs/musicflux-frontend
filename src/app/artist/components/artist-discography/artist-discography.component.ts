@@ -12,10 +12,13 @@ export class ArtistDiscographyComponent {
   albums: Album[] = [];
 
   get items() {
-    return this.albums.reverse().map(({ title, releaseDate, coverUrl }) => ({
-      name: title,
-      description: new Date(Date.parse(releaseDate)).getFullYear(),
-      coverUrl,
-    }));
+    return this.albums
+      .reverse()
+      .map(({ id, title, releaseDate, coverUrl }) => ({
+        id,
+        name: title,
+        description: new Date(Date.parse(releaseDate)).getFullYear().toString(),
+        coverUrl,
+      }));
   }
 }
