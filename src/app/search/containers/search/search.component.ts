@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription, debounceTime } from 'rxjs';
 import { SearchService } from '../../services/search.service';
 import { SearchResult } from '../../models/search';
@@ -31,6 +32,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly searchService: SearchService,
+    private readonly router: Router,
     private readonly location: Location
   ) {}
 
@@ -163,5 +165,13 @@ export class SearchComponent implements OnInit, OnDestroy {
       tracks: [],
       playlists: [],
     };
+  }
+
+  goToArtistPage(artistId: number) {
+    this.router.navigate([`/artists/${artistId}`]);
+  }
+
+  goToAlbumPage(albumId: number) {
+    this.router.navigate([`/albums/${albumId}`]);
   }
 }

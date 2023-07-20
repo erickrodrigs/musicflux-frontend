@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MusicfluxItem } from '../../models/musicflux-item';
 
@@ -17,6 +23,9 @@ export class MusicfluxItemComponent {
 
   @Input()
   rounded = false;
+
+  @Output()
+  itemClick = new EventEmitter<number>();
 
   get classNameBasedOnRoundedProp() {
     return this.rounded ? 'musicflux-item__rounded' : '';
