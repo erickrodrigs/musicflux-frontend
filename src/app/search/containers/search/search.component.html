@@ -41,11 +41,15 @@
       <horizontal-list
         [items]="artists"
         [roundedItems]="true"
+        (itemClick)="goToArtistPage($event)"
       ></horizontal-list>
     </div>
     <div class="search__results__category" *ngIf="showAlbums">
       <h4 class="mat-headline-6">Albums</h4>
-      <horizontal-list [items]="albums"></horizontal-list>
+      <horizontal-list
+        [items]="albums"
+        (itemClick)="goToAlbumPage($event)"
+      ></horizontal-list>
     </div>
     <div class="search__results__category" *ngIf="showTracks">
       <h4 class="mat-headline-6">Tracks</h4>

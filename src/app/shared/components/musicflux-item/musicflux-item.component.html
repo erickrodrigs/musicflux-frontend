@@ -1,4 +1,9 @@
-<article class="musicflux-item">
+<article
+  class="musicflux-item"
+  (click)="itemClick.emit(item.id)"
+  (keypress.enter)="itemClick.emit(item.id)"
+  tabindex="0"
+>
   <mat-card [class]="'musicflux-item__card ' + classNameBasedOnRoundedProp">
     <img
       *ngIf="item.coverUrl"

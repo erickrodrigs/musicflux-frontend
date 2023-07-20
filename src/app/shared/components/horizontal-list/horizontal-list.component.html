@@ -4,5 +4,6 @@
     *ngFor="let item of items"
     [item]="item"
     [rounded]="roundedItems"
+    (itemClick)="itemClick.emit($event)"
   ></musicflux-item>
 </div>
