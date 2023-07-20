@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, of, switchMap } from 'rxjs';
 import { ArtistService } from '../../services/artist.service';
 import { Artist } from '../../models/artist';
@@ -18,6 +18,7 @@ export class ArtistComponent implements OnInit {
 
   constructor(
     private readonly artistService: ArtistService,
+    private readonly router: Router,
     private readonly route: ActivatedRoute
   ) {}
 
@@ -39,5 +40,9 @@ export class ArtistComponent implements OnInit {
         this.albums = albums;
         this.topTracks = topTracks;
       });
+  }
+
+  goToAlbumPage(albumId: number) {
+    this.router.navigate([`/albums/${albumId}`]);
   }
 }

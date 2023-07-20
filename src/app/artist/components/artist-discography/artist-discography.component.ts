@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Album } from '../../../album/models/album';
 
 @Component({
@@ -10,6 +16,9 @@ import { Album } from '../../../album/models/album';
 export class ArtistDiscographyComponent {
   @Input()
   albums: Album[] = [];
+
+  @Output()
+  albumClick = new EventEmitter<number>();
 
   get items() {
     return this.albums

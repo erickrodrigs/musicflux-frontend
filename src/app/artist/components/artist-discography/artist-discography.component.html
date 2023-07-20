@@ -1,4 +1,7 @@
 <section class="discography">
   <h3 class="mat-headline-6 discography__title">Discography</h3>
-  <horizontal-list [items]="items"></horizontal-list>
+  <horizontal-list
+    [items]="items"
+    (itemClick)="albumClick.emit($event)"
+  ></horizontal-list>
 </section>
