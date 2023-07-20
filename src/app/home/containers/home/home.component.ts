@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: 'home.component.html',
 })
 export class HomeComponent {
-  items = Array.from({ length: 9 }).map(() => ({
-    coverUrl: '',
+  items = Array.from({ length: 9 }).map((_, index) => ({
+    id: index + 1,
     name: 'Album title',
     description: 'Artist name',
+    coverUrl: '',
   }));
 }

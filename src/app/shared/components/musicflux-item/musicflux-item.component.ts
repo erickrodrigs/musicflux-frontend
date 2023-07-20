@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { MusicfluxItem } from '../../models/musicflux-item';
 
 @Component({
   selector: 'musicflux-item',
@@ -12,13 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class MusicfluxItemComponent {
   @Input()
-  coverUrl = '';
-
-  @Input()
-  name = '';
-
-  @Input()
-  description = '';
+  item: MusicfluxItem;
 
   @Input()
   rounded = false;
