@@ -4,7 +4,7 @@
     (backButtonClick)="backToPreviousPage()"
   ></artist-header>
   <section class="artist__content-wrapper">
-    <artist-top-songs [tracks]="topTracks"></artist-top-songs>
+    <artist-top-tracks [tracks]="topTracks"></artist-top-tracks>
     <artist-discography
       [albums]="albums"
       (albumClick)="goToAlbumPage($event)"
