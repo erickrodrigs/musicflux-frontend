@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../auth/guards/auth.guard';
 import { AuthModule } from '../auth/auth.module';
+import { SharedModule } from '../shared/shared.module';
+import { AuthGuard } from '../auth/guards/auth.guard';
 import { HomeComponent } from './containers/home/home.component';
-import { HorizontalListComponent } from '../shared/components/horizontal-list/horizontal-list.component';
 
 const ROUTES: Routes = [
   {
@@ -15,10 +15,6 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [
-    RouterModule.forChild(ROUTES),
-    AuthModule.forRoot(),
-    HorizontalListComponent,
-  ],
+  imports: [RouterModule.forChild(ROUTES), AuthModule.forRoot(), SharedModule],
 })
 export class HomeModule {}

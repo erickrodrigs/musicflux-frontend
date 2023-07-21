@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { Album } from '../../../album/models/album';
+import { MusicfluxItem } from '../../../shared/models/musicflux-item';
 
 @Component({
   selector: 'artist-discography',
@@ -15,13 +16,8 @@ import { Album } from '../../../album/models/album';
 })
 export class ArtistDiscographyComponent {
   @Input()
-  albums: Album[] = [];
-
-  @Output()
-  albumClick = new EventEmitter<number>();
-
-  get items() {
-    return this.albums
+  set albums(albums: Album[]) {
+    this.items = albums
       .reverse()
       .map(({ id, title, releaseDate, coverUrl }) => ({
         id,
@@ -30,4 +26,9 @@ export class ArtistDiscographyComponent {
         coverUrl,
       }));
   }
+
+  @Output()
+  albumClick = new EventEmitter<number>();
+
+  items: MusicfluxItem[] = [];
 }

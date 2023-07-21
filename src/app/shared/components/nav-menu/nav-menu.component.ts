@@ -1,15 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'nav-menu',
-  styleUrls: ['nav-menu.component.scss'],
-  templateUrl: 'nav-menu.component.html',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterModule, MatIconModule],
+  templateUrl: 'nav-menu.component.html',
+  styleUrls: ['nav-menu.component.scss'],
 })
 export class NavMenuComponent {
   @Input()

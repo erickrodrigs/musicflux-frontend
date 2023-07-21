@@ -39,7 +39,7 @@
     <div class="search__results__category" *ngIf="showArtists">
       <h4 class="mat-headline-6">Artists</h4>
       <horizontal-list
-        [items]="artists"
+        [items]="result.artists"
         [roundedItems]="true"
         (itemClick)="goToArtistPage($event)"
       ></horizontal-list>
@@ -47,17 +47,17 @@
     <div class="search__results__category" *ngIf="showAlbums">
       <h4 class="mat-headline-6">Albums</h4>
       <horizontal-list
-        [items]="albums"
+        [items]="result.albums"
         (itemClick)="goToAlbumPage($event)"
       ></horizontal-list>
     </div>
     <div class="search__results__category" *ngIf="showTracks">
       <h4 class="mat-headline-6">Tracks</h4>
-      <horizontal-list [items]="tracks"></horizontal-list>
+      <horizontal-list [items]="result.tracks"></horizontal-list>
     </div>
     <div class="search__results__category" *ngIf="showPlaylists">
       <h4 class="mat-headline-6">Playlists</h4>
-      <horizontal-list [items]="playlists"></horizontal-list>
+      <horizontal-list [items]="result.playlists"></horizontal-list>
     </div>
   </section>
 </main>

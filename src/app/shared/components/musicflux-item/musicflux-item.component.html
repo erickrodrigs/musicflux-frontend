@@ -6,12 +6,12 @@
 >
   <mat-card [class]="'musicflux-item__card ' + classNameBasedOnRoundedProp">
     <img
-      *ngIf="item.coverUrl"
       mat-card-image
       [src]="item.coverUrl"
+      [alt]="item.name"
       width="150"
       height="150"
-      alt="Musicflux item cover"
+      missing
     />
   </mat-card>
   <div class="musicflux-item__description">

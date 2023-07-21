@@ -5,6 +5,15 @@ import { Router } from '@angular/router';
 import { Subscription, debounceTime } from 'rxjs';
 import { SearchService } from '../../services/search.service';
 import { SearchResult } from '../../models/search';
+import { MusicfluxItem } from 'src/app/shared/models/musicflux-item';
+
+interface ResultItems {
+  artists: MusicfluxItem[];
+  albums: MusicfluxItem[];
+  tracks: MusicfluxItem[];
+  playlists: MusicfluxItem[];
+  [key: string]: MusicfluxItem[];
+}
 
 @Component({
   selector: 'search',
@@ -15,7 +24,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   form = new FormGroup({
     search: new FormControl(''),
   });
-  result: SearchResult = {
+  result: ResultItems = {
     artists: [],
     albums: [],
     tracks: [],
@@ -38,43 +47,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   get isMobile() {
     return window.innerWidth < 768;
-  }
-
-  get artists() {
-    return this.result.artists.map((artist) => ({
-      id: artist.id,
-      name: artist.name,
-      coverUrl:
-        artist.photoUrl ===
-        'https://freemusicarchive.org/img/default/artist.jpg'
-          ? ''
-          : artist.photoUrl,
-    }));
-  }
-
-  get albums() {
-    return this.result.albums.map((album) => ({
-      id: album.id,
-      name: album.title,
-      description: album.artists.map(({ name }) => name).join(', '),
-      coverUrl: album.coverUrl,
-    }));
-  }
-
-  get tracks() {
-    return this.result.tracks.map((track) => ({
-      id: track.id,
-      name: track.title,
-      description: track.artists.map(({ name }) => name).join(', '),
-      coverUrl: track.album.coverUrl,
-    }));
-  }
-
-  get playlists() {
-    return Array.from({ length: 2 }).map((_, index) => ({
-      id: index + 1,
-      name: 'Playlist name',
-    }));
   }
 
   get showResults() {
@@ -147,11 +119,44 @@ export class SearchComponent implements OnInit, OnDestroy {
     types.forEach((type) => {
       this.searchService
         .search(search, type as 'Artist' | 'Album' | 'Track' | 'Playlist')
-        .subscribe((result) => {
-          const key = type.toLocaleLowerCase() + 's';
-          this.result[key] = result[key];
-        });
+        .subscribe((result) => this.buildResultItems(result, type));
     });
+  }
+
+  buildResultItems(result: SearchResult, type: string) {
+    switch (type) {
+      case 'Artist':
+        this.result.artists = result.artists.map((artist) => ({
+          id: artist.id,
+          name: artist.name,
+          coverUrl: artist.photoUrl,
+        }));
+        break;
+      case 'Album':
+        this.result.albums = result.albums.map((album) => ({
+          id: album.id,
+          name: album.title,
+          description: album.artists.map(({ name }) => name).join(', '),
+          coverUrl: album.coverUrl,
+        }));
+        break;
+      case 'Track':
+        this.result.tracks = result.tracks.map((track) => ({
+          id: track.id,
+          name: track.title,
+          description: track.artists.map(({ name }) => name).join(', '),
+          coverUrl: track.album.coverUrl,
+        }));
+        break;
+      case 'Playlist':
+        this.result.playlists = Array.from({ length: 2 }).map((_, index) => ({
+          id: index + 1,
+          name: 'Playlist name',
+        }));
+        break;
+      default:
+        break;
+    }
   }
 
   onBackButtonToggle() {

@@ -10,7 +10,7 @@ import { HomeModule } from './home/home.module';
 import { SearchModule } from './search/search.module';
 import { ArtistModule } from './artist/artist.module';
 import { AlbumModule } from './album/album.module';
-import { NavMenuComponent } from './shared/components/nav-menu/nav-menu.component';
+import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', loadChildren: () => HomeModule },
@@ -26,8 +26,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     AuthModule.forRoot(),
-    NavMenuComponent,
     MatSidenavModule,
+    SharedModule,
   ],
   bootstrap: [AppComponent],
 })
