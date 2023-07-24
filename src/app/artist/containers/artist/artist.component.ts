@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { forkJoin, of, switchMap } from 'rxjs';
 import { ArtistService } from '../../services/artist.service';
+import { TrackService } from '../../../track/services/track.service';
 import { Artist } from '../../models/artist';
 import { Album } from '../../../album/models/album';
 import { Track } from '../../../track/models/track';
@@ -19,9 +21,11 @@ export class ArtistComponent implements OnInit {
 
   constructor(
     private readonly artistService: ArtistService,
+    private readonly trackService: TrackService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly location: Location
+    private readonly location: Location,
+    private readonly snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -42,6 +46,13 @@ export class ArtistComponent implements OnInit {
         this.albums = albums;
         this.topTracks = topTracks;
       });
+  }
+
+  playTrack(trackIndex: number) {
+    const { id, title } = this.topTracks[trackIndex];
+    this.trackService.play(id).subscribe(() => {
+      this.snackBar.open(`${title} has been played.`, 'OK', { duration: 3000 });
+    });
   }
 
   backToPreviousPage() {
