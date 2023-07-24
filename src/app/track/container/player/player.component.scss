@@ -1,0 +1,24 @@
+.media-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  p {
+    margin-bottom: 0;
+  }
+  .time-slider {
+    width: 100%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .media-action-bar {
+    width: 100%;
+    padding: 2rem;
+    justify-content: center;
+  }
+
+  button {
+    border-radius: 100%;
+  }
+}

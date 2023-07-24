@@ -1,4 +1,8 @@
-<article>
+<article
+  (click)="trackClick.emit(trackNumber)"
+  (keypress.enter)="trackClick.emit(trackNumber)"
+  tabindex="0"
+>
   <!-- mobile -->
   <div *ngIf="isMobile" class="track">
     <div class="track__title-wrapper">

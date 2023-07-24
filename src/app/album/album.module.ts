@@ -25,7 +25,7 @@ const routes: Routes = [
     AuthModule.forRoot(),
     MatButtonModule,
     MatIconModule,
-    TrackModule,
+    TrackModule.forRoot(),
   ],
   providers: [AlbumService],
 })

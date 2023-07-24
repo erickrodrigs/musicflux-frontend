@@ -10,7 +10,9 @@ import { HomeModule } from './home/home.module';
 import { SearchModule } from './search/search.module';
 import { ArtistModule } from './artist/artist.module';
 import { AlbumModule } from './album/album.module';
+import { TrackModule } from './track/track.module';
 import { SharedModule } from './shared/shared.module';
+import { Store } from './store';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', loadChildren: () => HomeModule },
@@ -27,8 +29,10 @@ const routes: Routes = [
     BrowserAnimationsModule,
     AuthModule.forRoot(),
     MatSidenavModule,
+    TrackModule.forRoot(),
     SharedModule,
   ],
+  providers: [Store],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

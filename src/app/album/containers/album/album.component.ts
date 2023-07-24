@@ -5,6 +5,7 @@ import { forkJoin, of, switchMap } from 'rxjs';
 import { AlbumService } from '../../services/album.service';
 import { Album } from '../../models/album';
 import { Track } from '../../../track/models/track';
+import { Store } from '../../../store';
 
 @Component({
   selector: 'album',
@@ -23,6 +24,7 @@ export class AlbumComponent implements OnInit {
 
   constructor(
     private readonly albumService: AlbumService,
+    private readonly store: Store,
     private readonly route: ActivatedRoute,
     private readonly location: Location
   ) {}
@@ -47,6 +49,14 @@ export class AlbumComponent implements OnInit {
         this.album = album;
         this.tracks = tracks;
       });
+  }
+
+  playTrack(trackIndex: number) {
+    this.store.set('queue', this.tracks);
+    this.store.set('currentTrack', {
+      index: trackIndex,
+      file: `http://localhost:3333/api/v1/files/${this.tracks[trackIndex].id}.mp3`,
+    });
   }
 
   backToPreviousPage() {

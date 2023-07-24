@@ -6,8 +6,9 @@
   <mat-sidenav class="app__sidenav" mode="side" opened fixedInViewport>
     <nav-menu [isMobile]="isMobile"></nav-menu>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content class="app__content">
     <router-outlet></router-outlet>
+    <player></player>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
