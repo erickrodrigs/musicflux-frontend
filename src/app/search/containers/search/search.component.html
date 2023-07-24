@@ -53,7 +53,10 @@
     </div>
     <div class="search__results__category" *ngIf="showTracks">
       <h4 class="mat-headline-6">Tracks</h4>
-      <horizontal-list [items]="result.tracks"></horizontal-list>
+      <horizontal-list
+        [items]="result.tracks"
+        (itemClick)="playTrack($event)"
+      ></horizontal-list>
     </div>
     <div class="search__results__category" *ngIf="showPlaylists">
       <h4 class="mat-headline-6">Playlists</h4>
