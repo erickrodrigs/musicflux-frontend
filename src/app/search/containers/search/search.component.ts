@@ -2,10 +2,12 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription, debounceTime } from 'rxjs';
 import { SearchService } from '../../services/search.service';
+import { TrackService } from '../../../track/services/track.service';
 import { SearchResult } from '../../models/search';
-import { MusicfluxItem } from 'src/app/shared/models/musicflux-item';
+import { MusicfluxItem } from '../../../shared/models/musicflux-item';
 
 interface ResultItems {
   artists: MusicfluxItem[];
@@ -41,8 +43,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly searchService: SearchService,
+    private readonly trackService: TrackService,
     private readonly router: Router,
-    private readonly location: Location
+    private readonly location: Location,
+    private readonly snackBar: MatSnackBar
   ) {}
 
   get isMobile() {
@@ -157,6 +161,13 @@ export class SearchComponent implements OnInit, OnDestroy {
       default:
         break;
     }
+  }
+
+  playTrack(trackId: number) {
+    const title = this.result.tracks.find(({ id }) => trackId == id)?.name;
+    this.trackService.play(trackId).subscribe(() => {
+      this.snackBar.open(`${title} has been played.`, 'OK', { duration: 3000 });
+    });
   }
 
   onBackButtonToggle() {
