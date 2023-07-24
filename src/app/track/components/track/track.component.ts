@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Track } from '../../models/track';
 
 @Component({
@@ -22,6 +28,9 @@ export class TrackComponent {
 
   @Input()
   showNumberOfPlays = true;
+
+  @Output()
+  trackClick = new EventEmitter<number>();
 
   showPlayButton = false;
 
