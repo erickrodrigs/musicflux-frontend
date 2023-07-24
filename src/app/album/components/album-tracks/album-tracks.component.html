@@ -6,6 +6,7 @@
       [showArtistName]="true"
       [showAlbumCover]="false"
       [showNumberOfPlays]="false"
+      (trackClick)="trackClick.emit(i)"
     ></musicflux-track>
   </div>
 </section>

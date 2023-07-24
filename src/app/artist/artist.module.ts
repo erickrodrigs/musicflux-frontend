@@ -34,7 +34,7 @@ const routes: Routes = [
     AuthModule.forRoot(),
     MatButtonModule,
     MatIconModule,
-    TrackModule,
+    TrackModule.forRoot(),
     SharedModule,
   ],
   providers: [ArtistService],
