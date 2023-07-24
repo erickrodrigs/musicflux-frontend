@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthModule } from '../auth/auth.module';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { TrackModule } from '../track/track.module';
@@ -25,6 +26,7 @@ const routes: Routes = [
     AuthModule.forRoot(),
     MatButtonModule,
     MatIconModule,
+    MatSnackBarModule,
     TrackModule,
   ],
   providers: [AlbumService],

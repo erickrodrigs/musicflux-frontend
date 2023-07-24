@@ -4,5 +4,8 @@
     [albumLength]="albumLength"
     (backButtonClick)="backToPreviousPage()"
   ></album-header>
-  <album-tracks [tracks]="tracks"></album-tracks>
+  <album-tracks
+    [tracks]="tracks"
+    (trackClick)="playTrack($event)"
+  ></album-tracks>
 </main>
