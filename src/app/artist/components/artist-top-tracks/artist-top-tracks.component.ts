@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Track } from '../../../track/models/track';
 
 @Component({
@@ -10,4 +16,7 @@ import { Track } from '../../../track/models/track';
 export class ArtistTopTracksComponent {
   @Input()
   tracks: Track[];
+
+  @Output()
+  trackClick = new EventEmitter<number>();
 }
