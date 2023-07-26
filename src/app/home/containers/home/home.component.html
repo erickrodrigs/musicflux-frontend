@@ -3,6 +3,9 @@
 
   <section>
     <h3 class="mat-headline-5">Recently played</h3>
-    <horizontal-list [items]="items"></horizontal-list>
+    <horizontal-list
+      [items]="items"
+      (itemClick)="goToAlbumPage($event)"
+    ></horizontal-list>
   </section>
 </main>
