@@ -8,13 +8,16 @@ import { Page } from '../../shared/models/api.model';
 export class RecentlyPlayedService {
   constructor(private readonly http: HttpClient) {}
 
-  getRecentlyPlayedTracks(): Observable<Page<RecentlyPlayed>> {
+  getRecentlyPlayedTracks(
+    page = 0,
+    size = 10
+  ): Observable<Page<RecentlyPlayed>> {
     const authToken = localStorage.getItem('auth_token') || '';
     const headers = new HttpHeaders({
       Authorization: `Bearer ${authToken}`,
     });
     return this.http.get<Page<RecentlyPlayed>>(
-      'http://localhost:3333/api/v1/me/recently-played',
+      `http://localhost:3333/api/v1/me/recently-played?page=${page}&size=${size}`,
       { headers }
     );
   }

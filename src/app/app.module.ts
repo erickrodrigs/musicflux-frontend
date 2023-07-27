@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { SearchModule } from './search/search.module';
 import { ArtistModule } from './artist/artist.module';
 import { AlbumModule } from './album/album.module';
+import { RecentlyPlayedModule } from './recently-played/recently-played.module';
 import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
@@ -17,6 +18,11 @@ const routes: Routes = [
   { path: 'search', pathMatch: 'full', loadChildren: () => SearchModule },
   { path: 'artists', pathMatch: 'prefix', loadChildren: () => ArtistModule },
   { path: 'albums', pathMatch: 'prefix', loadChildren: () => AlbumModule },
+  {
+    path: 'history',
+    pathMatch: 'full',
+    loadChildren: () => RecentlyPlayedModule,
+  },
 ];
 
 @NgModule({
