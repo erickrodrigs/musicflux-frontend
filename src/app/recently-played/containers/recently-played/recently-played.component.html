@@ -1,0 +1,48 @@
+<main class="history">
+  <header class="history__header">
+    <button mat-icon-button>
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="mat-headline-4">Recently played</h2>
+  </header>
+  <section class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="track">
+        <th mat-header-cell *matHeaderCellDef>Track</th>
+        <td mat-cell *matCellDef="let element">{{ element.track }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="album">
+        <th mat-header-cell *matHeaderCellDef>Album</th>
+        <td mat-cell *matCellDef="let element">{{ element.album }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="artist">
+        <th mat-header-cell *matHeaderCellDef>Artist</th>
+        <td mat-cell *matCellDef="let element">{{ element.artist }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="playedAt">
+        <th mat-header-cell *matHeaderCellDef>Playet at</th>
+        <td mat-cell *matCellDef="let element">{{ element.playedAt }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div class="history__paginator">
+      <button
+        mat-icon-button
+        [disabled]="isFirstPage"
+        (click)="goToPreviousPage()"
+      >
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <p class="mat-caption">{{ currentPage + 1 }} / {{ numberOfPages }}</p>
+      <button mat-icon-button [disabled]="isLastPage" (click)="goToNextPage()">
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
+  </section>
+</main>

@@ -14,6 +14,6 @@ export class NavMenuComponent {
     { iconName: 'home', name: 'Home', link: '' },
     { iconName: 'search', name: 'Search', link: '/search' },
     { iconName: 'library_music', name: 'Library', link: '' },
-    { iconName: 'history', name: 'History', link: '' },
+    { iconName: 'history', name: 'History', link: '/history' },
   ];
 }
