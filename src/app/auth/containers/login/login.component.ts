@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { LoginPayload } from 'src/app/auth/models/auth.model';
-import { ApiError } from 'src/app/shared/models/api.model';
+import { AuthService } from '../../services/auth.service';
+import { LoginPayload } from '../../models/auth.model';
+import { ApiError } from '../../../shared/models/api.model';
 
 @Component({
   selector: 'login',

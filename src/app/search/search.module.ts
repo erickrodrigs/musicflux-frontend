@@ -2,23 +2,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AuthModule } from '../auth/auth.module';
+import { SearchRoutingModule } from './search.routing.module';
 import { TrackModule } from '../track/track.module';
 import { SharedModule } from '../shared/shared.module';
-import { AuthGuard } from '../auth/guards/auth.guard';
 import { SearchComponent } from './containers/search/search.component';
 import { SearchService } from './services/search.service';
-
-const ROUTES: Routes = [
-  { path: '', canActivate: [AuthGuard], component: SearchComponent },
-];
 
 @NgModule({
   declarations: [SearchComponent],
@@ -26,8 +20,7 @@ const ROUTES: Routes = [
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule.forChild(ROUTES),
-    AuthModule.forRoot(),
+    SearchRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,

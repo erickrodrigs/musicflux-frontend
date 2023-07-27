@@ -11,12 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
 import { RegisterComponent } from './register.component';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import {
-  AuthResponseDetails,
-  RegisterPayload,
-} from 'src/app/auth/models/auth.model';
-import { ApiError } from 'src/app/shared/models/api.model';
+import { AuthService } from '../../services/auth.service';
+import { AuthResponseDetails, RegisterPayload } from '../../models/auth.model';
+import { ApiError } from '../../../shared/models/api.model';
 
 class MockAuthService {
   register({

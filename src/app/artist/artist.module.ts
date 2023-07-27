@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AuthModule } from '../auth/auth.module';
-import { AuthGuard } from '../auth/guards/auth.guard';
+import { ArtistRoutingModule } from './artist.routing.module';
 import { TrackModule } from '../track/track.module';
 import { SharedModule } from '../shared/shared.module';
 import { ArtistComponent } from './containers/artist/artist.component';
@@ -15,10 +13,6 @@ import { ArtistTopTracksComponent } from './components/artist-top-tracks/artist-
 import { ArtistDiscographyComponent } from './components/artist-discography/artist-discography.component';
 import { ArtistBiographyComponent } from './components/artist-biography/artist-biography.component';
 import { ArtistService } from './services/artist.service';
-
-const routes: Routes = [
-  { path: ':id', canActivate: [AuthGuard], component: ArtistComponent },
-];
 
 @NgModule({
   declarations: [
@@ -31,8 +25,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule.forChild(routes),
-    AuthModule.forRoot(),
+    ArtistRoutingModule,
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
